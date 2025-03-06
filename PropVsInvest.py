@@ -124,6 +124,8 @@ fig = px.area(df_equity_long, x="Year", y="Equity Value", color="Scenario",
               title="Total Equity Accumulation",
               labels={"Equity Value": "Equity ($)", "Year": "Years"},
               template="seaborn")
+fig.update_layout(yaxis=dict(range=[0, df_equity_long["Equity Value"].max() * 1.1]))
+
 
 st.plotly_chart(fig, use_container_width=True)
 
