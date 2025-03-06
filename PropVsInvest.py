@@ -2,6 +2,7 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import plotly.express as px
 
 def property_vs_investment(own_params, rent_params, invest_params, savings_params, years=20):
     years_range = np.arange(1, years + 1)
@@ -115,8 +116,16 @@ df_cashflow, df_equity = property_vs_investment(own_params, rent_params, invest_
 # Display Results
 
 
-st.subheader("Equity Growth Over Time")
-st.line_chart(df_equity.set_index("Year"))
+# Create a Plotly figure
+st.subheader("📊 Equity Growth Over Time")
+
+df_equity_long = df_equity.melt(id_vars=["Year"], var_name="Scenario", value_name="Equity Value")
+fig = px.area(df_equity_long, x="Year", y="Equity Value", color="Scenario",
+              title="Total Equity Accumulation",
+              labels={"Equity Value": "Equity ($)", "Year": "Years"},
+              template="ggplot2")
+
+st.plotly_chart(fig, use_container_width=True)
 
 st.subheader("Cashflow Table")
 st.dataframe(df_cashflow)
@@ -125,33 +134,28 @@ st.subheader("Equity Table")
 st.dataframe(df_equity)
 
 
-import plotly.express as px
+
 
 # Create a Plotly figure
-st.subheader("📊 Equity Growth Over Time")
+#st.subheader("📊 Equity Growth Over Time")
 
-df_equity_long = df_equity.melt(id_vars=["Year"], var_name="Scenario", value_name="Equity Value")
+#df_equity_long = df_equity.melt(id_vars=["Year"], var_name="Scenario", value_name="Equity Value")
 
-fig = px.line(df_equity_long, x="Year", y="Equity Value", color="Scenario",
-              title="Equity Growth Over Time",
-              labels={"Equity Value": "Equity ($)", "Year": "Years"},
-              template="plotly_dark")
+#fig = px.line(df_equity_long, x="Year", y="Equity Value", color="Scenario",
+              #title="Equity Growth Over Time",
+              #labels={"Equity Value": "Equity ($)", "Year": "Years"},
+             # template="plotly_dark")
 
-st.plotly_chart(fig, use_container_width=True)
+#st.plotly_chart(fig, use_container_width=True)
 
-fig = px.area(df_equity_long, x="Year", y="Equity Value", color="Scenario",
-              title="Total Equity Accumulation",
-              labels={"Equity Value": "Equity ($)", "Year": "Years"},
-              template="ggplot2")
 
-st.plotly_chart(fig, use_container_width=True)
 
-fig = px.bar(df_equity_long, x="Year", y="Equity Value", color="Scenario",
-             title="Yearly Equity Growth",
-             labels={"Equity Value": "Equity ($)", "Year": "Years"},
-             template="seaborn")
+#fig = px.bar(df_equity_long, x="Year", y="Equity Value", color="Scenario",
+ #            title="Yearly Equity Growth",
+ #            labels={"Equity Value": "Equity ($)", "Year": "Years"},
+ #            template="seaborn")
 
-st.plotly_chart(fig, use_container_width=True)
+#st.plotly_chart(fig, use_container_width=True)
 
 
 
