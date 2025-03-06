@@ -110,8 +110,7 @@ savings_params = {
 df_cashflow, df_equity = property_vs_investment(own_params, rent_params, invest_params, savings_params)
 
 # Display Results
-st.subheader("Cashflow Over Time")
-st.line_chart(df_cashflow.set_index("Year"))
+
 
 st.subheader("Equity Growth Over Time")
 st.line_chart(df_equity.set_index("Year"))
