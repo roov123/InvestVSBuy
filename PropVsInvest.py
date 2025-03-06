@@ -63,21 +63,21 @@ st.sidebar.header("📊 Property & Investment Assumptions")
 
 # Inputs
 st.sidebar.subheader("🏡 Scenario 1: Buy a Property")
-property_price = st.sidebar.number_input("Property Price ($)", value=800000,step = 50000)
-loan_amount = st.sidebar.number_input("Loan Amount ($)", value=600000,step = 50000)
+property_price = st.sidebar.number_input("Property Price ($)", value=800000,step = 50000,format="%d")
+loan_amount = st.sidebar.number_input("Loan Amount ($)", value=600000,step = 50000,format="%d")
 interest_rate = st.sidebar.number_input("Loan Interest Rate (%)", value=5.0) / 100
-mortgage_payment = st.sidebar.number_input("Monthly Mortgage Payment ($)", value=4000)
-expenses = st.sidebar.number_input("Annual Expenses ($)", value=5000)
+mortgage_payment = st.sidebar.number_input("Monthly Mortgage Payment ($)", value=4000,format="%d")
+expenses = st.sidebar.number_input("Annual Expenses ($)", value=5000,format="%d")
 appreciation_rate = st.sidebar.number_input("Annual Property Appreciation (%)", value=3.0) / 100
 
 st.sidebar.subheader("🏢 Scenario 2: Buy an Investment Property")
-rental_income = st.sidebar.number_input("Annual Rental Income ($)", value=30000)
+rental_income = st.sidebar.number_input("Annual Rental Income ($)", value=30000,format="%d")
 rent_growth = st.sidebar.number_input("Annual Rent Growth (%)", value=2.0) / 100
 
 st.sidebar.subheader("🏠 Scenario 3: Rent and Invest")
-initial_investment = st.sidebar.number_input("Initial Investment in Portfolio ($)", value=200000)
+initial_investment = st.sidebar.number_input("Initial Investment in Portfolio ($)", value=200000,format="%d")
 return_rate = st.sidebar.number_input("Annual Investment Return (%)", value=7.0) / 100
-monthly_savings = st.sidebar.number_input("Monthly Additional Savings ($)", value=1000)
+monthly_savings = st.sidebar.number_input("Monthly Additional Savings ($)", value=1000,format="%d")
 
 # Define parameters
 own_params = {
