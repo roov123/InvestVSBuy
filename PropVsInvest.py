@@ -129,6 +129,10 @@ fig = px.line(df_equity_long, x="Year", y="Equity Value", color="Scenario",
               title="Equity Growth Over Time",
               labels={"Equity Value": "Equity ($)", "Year": "Years"},
               template="plotly_dark")
+fig = px.bar(df_equity_long, x="Year", y="Equity Value", color="Scenario",
+             title="Yearly Equity Growth",
+             labels={"Equity Value": "Equity ($)", "Year": "Years"},
+             template="seaborn")
 
 
 
