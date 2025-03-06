@@ -12,7 +12,7 @@ def property_vs_investment(own_params, rent_params, invest_params, savings_param
     loan_balance = own_params['loan_amount']
     for i in range(years):
         interest = loan_balance * own_params['interest_rate']
-        principal = own_params['mortgage_payment'] - interest
+        principal = own_params['mortgage_payment']*12 - interest
         loan_balance -= principal
         own_cashflow[i] = -own_params['mortgage_payment'] - own_params['expenses']
         own_equity[i] = own_params['property_price'] * ((1 + own_params['appreciation_rate']) ** (i + 1)) - loan_balance
@@ -62,11 +62,11 @@ st.title("🏡 Property vs Investing Analysis 📈")
 st.sidebar.header("📊 Property & Investment Assumptions")
 
 # Inputs
-st.sidebar.header("Property & Investment Assumptions")
+
 property_price = st.sidebar.number_input("Property Price ($)", value=800000,step = 50000)
-loan_amount = st.sidebar.number_input("Loan Amount ($)", value=600000)
+loan_amount = st.sidebar.number_input("Loan Amount ($)", value=600000,step = 50000)
 interest_rate = st.sidebar.number_input("Loan Interest Rate (%)", value=5.0) / 100
-mortgage_payment = st.sidebar.number_input("Annual Mortgage Payment ($)", value=40000)
+mortgage_payment = st.sidebar.number_input("Monthly Mortgage Payment ($)", value=4000)
 expenses = st.sidebar.number_input("Annual Expenses ($)", value=5000)
 appreciation_rate = st.sidebar.number_input("Annual Property Appreciation (%)", value=3.0) / 100
 
