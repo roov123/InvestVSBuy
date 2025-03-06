@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import plotly.express as px
 
 st.set_page_config(layout="wide")
+st.info("👈 Use the sidebar to enter your assumptions. Adjust the values to see real-time updates.")
+
 
 def property_vs_investment(own_params, rent_params, invest_params, savings_params, years=20):
     years_range = np.arange(1, years + 1)
