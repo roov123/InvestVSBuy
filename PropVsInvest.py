@@ -139,3 +139,11 @@ fig = px.line(df_equity_long, x="Year", y="Equity Value", color="Scenario",
 
 st.plotly_chart(fig, use_container_width=True)
 
+fig = px.area(df_equity_long, x="Year", y="Equity Value", color="Scenario",
+              title="Total Equity Accumulation",
+              labels={"Equity Value": "Equity ($)", "Year": "Years"},
+              template="ggplot2")
+
+st.plotly_chart(fig, use_container_width=True)
+
+
