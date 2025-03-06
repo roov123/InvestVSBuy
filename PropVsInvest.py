@@ -125,14 +125,13 @@ df_equity_long = df_equity.melt(id_vars=["Year"], var_name="Scenario", value_nam
     #          labels={"Equity Value": "Equity ($)", "Year": "Years"},
       #        template="seaborn")
 
-fig = px.line(df_equity_long, x="Year", y="Equity Value", color="Scenario",
-              title="Equity Growth Over Time",
-              labels={"Equity Value": "Equity ($)", "Year": "Years"},
-              template="plotly_dark")
+
+
 fig = px.bar(df_equity_long, x="Year", y="Equity Value", color="Scenario",
              title="Yearly Equity Growth",
              labels={"Equity Value": "Equity ($)", "Year": "Years"},
-             template="seaborn")
+             template="seaborn",
+             barmode="group")
 
 
 
