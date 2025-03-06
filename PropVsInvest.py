@@ -58,11 +58,12 @@ def property_vs_investment(own_params, rent_params, invest_params, savings_param
     return df_cashflow, df_equity
 
 # Streamlit UI
-st.title("Property vs Investing Analysis")
+st.title("🏡 Property vs Investing Analysis 📈")
+st.sidebar.header("📊 Property & Investment Assumptions")
 
 # Inputs
 st.sidebar.header("Property & Investment Assumptions")
-property_price = st.sidebar.number_input("Property Price ($)", value=800000)
+property_price = st.sidebar.number_input("Property Price ($)", value=800000,step = 50000)
 loan_amount = st.sidebar.number_input("Loan Amount ($)", value=600000)
 interest_rate = st.sidebar.number_input("Loan Interest Rate (%)", value=5.0) / 100
 mortgage_payment = st.sidebar.number_input("Annual Mortgage Payment ($)", value=40000)
