@@ -123,7 +123,7 @@ df_equity_long = df_equity.melt(id_vars=["Year"], var_name="Scenario", value_nam
 fig = px.area(df_equity_long, x="Year", y="Equity Value", color="Scenario",
               title="Total Equity Accumulation",
               labels={"Equity Value": "Equity ($)", "Year": "Years"},
-              template="ggplot2")
+              template="seaborn")
 
 st.plotly_chart(fig, use_container_width=True)
 
