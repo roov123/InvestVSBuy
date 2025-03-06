@@ -146,4 +146,12 @@ fig = px.area(df_equity_long, x="Year", y="Equity Value", color="Scenario",
 
 st.plotly_chart(fig, use_container_width=True)
 
+fig = px.bar(df_equity_long, x="Year", y="Equity Value", color="Scenario",
+             title="Yearly Equity Growth",
+             labels={"Equity Value": "Equity ($)", "Year": "Years"},
+             template="seaborn")
+
+st.plotly_chart(fig, use_container_width=True)
+
+
 
