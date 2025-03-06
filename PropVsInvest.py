@@ -137,6 +137,16 @@ fig = px.bar(df_equity_long, x="Year", y="Equity Value", color="Scenario",
              barmode="group")
 fig.update_layout(width=1000)  # Increase width for readability
 fig.update_layout(autosize=True)
+fig.update_layout(
+    legend=dict(
+        orientation="h",  # Makes the legend horizontal
+        yanchor="top",  # Aligns the legend to the top of its position
+        y=-0.3,  # Moves it below the x-axis
+        xanchor="center",  # Centers the legend
+        x=0.5  # Places it in the middle
+    )
+)
+
 
 
 
