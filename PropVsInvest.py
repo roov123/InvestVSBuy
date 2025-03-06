@@ -129,11 +129,14 @@ df_equity_long = df_equity.melt(id_vars=["Year"], var_name="Scenario", value_nam
 
 
 
+
 fig = px.bar(df_equity_long, x="Year", y="Equity Value", color="Scenario",
              title="Yearly Equity Growth",
              labels={"Equity Value": "Equity ($)", "Year": "Years"},
              template="seaborn",
              barmode="group")
+fig.update_layout(width=1000)  # Increase width for readability
+
 
 
 
