@@ -119,12 +119,20 @@ df_cashflow, df_equity = property_vs_investment(own_params, rent_params, invest_
 # Create a Plotly figure
 st.subheader("📊 Equity Growth Over Time")
 
-df_equity_long = df_equity.melt(id_vars=["Year"], var_name="Scenario", value_name="Equity Value")
-fig = px.area(df_equity_long, x="Year", y="Equity Value", color="Scenario",
-              title="Total Equity Accumulation",
-              labels={"Equity Value": "Equity ($)", "Year": "Years"},
-              template="seaborn")
-fig.update_layout(yaxis=dict(range=[0, df_equity_long["Equity Value"].max() * 1.1]))
+#df_equity_long = df_equity.melt(id_vars=["Year"], var_name="Scenario", value_name="Equity Value")
+#fig = px.area(df_equity_long, x="Year", y="Equity Value", color="Scenario",
+   #           title="Total Equity Accumulation",
+    #          labels={"Equity Value": "Equity ($)", "Year": "Years"},
+      #        template="seaborn")
+
+
+df_equity["Max Equity"] = df_equity[["Equity in Owned Property", "Equity in Rental Property", "Investment Portfolio Value"]].max(axis=1)
+
+# Create an area chart using the max equity values
+fig = px.area(df_equity, x="Year", y="Max Equity",
+              title="Equity Growth Over Time",
+              labels={"Max Equity": "Equity ($)", "Year": "Years"},
+              template="plotly_white")
 
 
 st.plotly_chart(fig, use_container_width=True)
