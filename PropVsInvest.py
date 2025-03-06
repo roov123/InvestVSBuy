@@ -51,7 +51,7 @@ def property_vs_investment(own_params, rent_params, invest_params, savings_param
     df_equity = pd.DataFrame({
         'Year': years_range,
         'Scenario 1:Buy home': own_equity,
-        'Scenario 2:Buy property investment: rent_equity,
+        'Scenario 2:Buy property investment': rent_equity,
         'Scenario 3:Invest': invest_cashflow
     })
 
