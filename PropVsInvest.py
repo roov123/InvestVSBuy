@@ -136,6 +136,8 @@ fig = px.bar(df_equity_long, x="Year", y="Equity Value", color="Scenario",
              template="seaborn",
              barmode="group")
 fig.update_layout(width=1000)  # Increase width for readability
+fig.update_layout(autosize=True)
+
 
 
 
