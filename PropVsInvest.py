@@ -123,3 +123,19 @@ st.dataframe(df_cashflow)
 
 st.subheader("Equity Table")
 st.dataframe(df_equity)
+
+
+import plotly.express as px
+
+# Create a Plotly figure
+st.subheader("📊 Equity Growth Over Time")
+
+df_equity_long = df_equity.melt(id_vars=["Year"], var_name="Scenario", value_name="Equity Value")
+
+fig = px.line(df_equity_long, x="Year", y="Equity Value", color="Scenario",
+              title="Equity Growth Over Time",
+              labels={"Equity Value": "Equity ($)", "Year": "Years"},
+              template="plotly_dark")
+
+st.plotly_chart(fig, use_container_width=True)
+
