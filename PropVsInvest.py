@@ -9,7 +9,7 @@ st.info("👈 Use the sidebar to enter your assumptions. Adjust the values to se
 
 
 def calculate_mortgage(loan_amount, interest_rate, loan_term):
-    monthly_rate = interest_rate / 100 / 12
+    monthly_rate = interest_rate / 12
     num_payments = loan_term * 12
     if monthly_rate > 0:
         mortgage_payment = (loan_amount * monthly_rate) / (1 - (1 + monthly_rate) ** -num_payments)
