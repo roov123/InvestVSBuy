@@ -108,7 +108,7 @@ with st.sidebar.expander("Ongoing monthly costs" , expanded=False):
 
     # Total ongoing monthly osts
     ongoing_costs = build_insurance + strata_fees + council_fees
-    st.write(f"### Total Upfront Costs: ${ongoing_costs}")
+    st.write(f"### Total ongoing monthly costs: ${ongoing_costs}")
 
 
 
