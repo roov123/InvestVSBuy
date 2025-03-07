@@ -38,7 +38,7 @@ def property_vs_investment(own_params, rent_params, invest_params, savings_param
     for i in range(years):
         rent_income = rent_params['rental_income'] * (1 + rent_params['rent_growth']) ** i
         interest = loan_balance * rent_params['interest_rate']
-        principal = rent_params['mortgage_payment'] - interest
+        principal = rent_params['mortgage_payment']*12 - interest
         loan_balance -= principal
         net_cashflow = rent_income - rent_params['expenses'] - rent_params['mortgage_payment']
         rent_cashflow[i] = net_cashflow
@@ -79,7 +79,7 @@ st.sidebar.header("📊 Assumptions")
 #--------------------------------------------------------------------------------------------
 st.sidebar.subheader("🏡 Your financial position")
 family_income= st.sidebar.number_input("What is your monthly family take home income ($)", value=12000, step=200)
-current_rent=st.sidebar.number_input("What is your current rent ($)", value=4000, step=200)
+current_rent=st.sidebar.number_input("What is your current monthly rent ($)", value=4000, step=200)
 monthly_savings=st.sidebar.number_input("What is your monthly family savings after expenses ($)", value=3000, step=200)
 
 assets = st.sidebar.number_input("What is your total investable asset base ($)", value=500000, step=10000)
@@ -128,32 +128,13 @@ with st.sidebar.expander("Mortgage costs" , expanded=False):
     #mortgage_payment = st.sidebar.number_input("Monthly Mortgage Payment ($)", value=4000,format="%d")
 
 
-    
-
-   
-
-
-
-
-st.sidebar.subheader("🏡 Scenario 1: Buy a Property")
-
-#loan_amount = st.sidebar.number_input("Loan Amount ($)", value=600000,step = 50000,format="%d")
-#interest_rate = st.sidebar.number_input("Loan Interest Rate (%)", value=5.0) / 100
-
-expenses = st.sidebar.number_input("Annual Expenses ($)", value=5000,format="%d")
+ st.sidebar.subheader("🏡 Other assumptions")
+investment_return = st.sidebar.number_input("Expected Investment Return (%) on alternative assets", value=7.0, step=0.1)
+rent_investment_prop=st.sidebar.number_input("Monthly rental income on investment property ($)", value=3000,format="%d")
+rent_growth = st.sidebar.number_input("Annual Rent Growth (%)", value=2.0) / 100
 appreciation_rate = st.sidebar.number_input("Annual Property Appreciation (%)", value=3.0) / 100
 
-
-
-
-st.sidebar.subheader("🏢 Scenario 2: Buy an Investment Property")
-rental_income = st.sidebar.number_input("Annual Rental Income ($)", value=30000,format="%d")
-rent_growth = st.sidebar.number_input("Annual Rent Growth (%)", value=2.0) / 100
-
-st.sidebar.subheader("🏠 Scenario 3: Rent and Invest")
-initial_investment = st.sidebar.number_input("Initial Investment in Portfolio ($)", value=200000,format="%d")
-return_rate = st.sidebar.number_input("Annual Investment Return (%)", value=7.0) / 100
-monthly_savings = st.sidebar.number_input("Monthly Additional Savings ($)", value=1000,format="%d")
+ 
 
 # Define parameters
 own_params = {
@@ -161,7 +142,7 @@ own_params = {
     'loan_amount': loan_amount,
     'interest_rate': interest_rate,
     'mortgage_payment': mortgage_payment,
-    'expenses': expenses,
+    'expenses': ongoing_costs,
     'appreciation_rate': appreciation_rate
 }
 
@@ -170,15 +151,15 @@ rent_params = {
     'loan_amount': loan_amount,
     'interest_rate': interest_rate,
     'mortgage_payment': mortgage_payment,
-    'expenses': expenses,
-    'rental_income': rental_income,
+    'expenses': ongoing_costs,
+    'rental_income': rent_investment_prop,
     'rent_growth': rent_growth,
     'appreciation_rate': appreciation_rate
 }
 
 invest_params = {
-    'initial_investment': initial_investment,
-    'return_rate': return_rate
+    'initial_investment': assets,
+    'return_rate': investment_return
 }
 
 savings_params = {
