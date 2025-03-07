@@ -83,7 +83,7 @@ use_all_assets = st.sidebar.checkbox("Use all assets for property investment")
 if use_all_assets:
     property_budget = assets
 else:
-    property_budget = st.number_input("How much are you prepared to invest in property (deposit + upfront costs)?", value=200000, step=10000, min_value=0, max_value=assets)
+    property_budget = st.sidebar.number_input("How much are you prepared to invest in property (deposit + upfront costs)?", value=200000, step=10000, min_value=0, max_value=assets)
 
 investment_return = st.sidebar.number_input("Expected Investment Return (%) on alternative assets", value=7.0, step=0.1)
 investible_assets=assets-property_budget
