@@ -92,23 +92,15 @@ investible_assets=assets-property_budget
 st.sidebar.subheader("🏡 Costs of buying property")
 # Sidebar for Property Costs
 
-st.sidebar.markdown(
-    """<div style='border: 2px solid #007BFF; background-color:#007BFF; color:white; padding:10px; border-radius:5px; font-weight:bold; text-align:center;'>Upfront Costs</div>""",
-    unsafe_allow_html=True
-)
-
-# **Using st.sidebar.container() to group elements inside a bordered section**
-with st.sidebar.container():
-    st.markdown(
-        """<div style='border: 2px solid #007BFF; padding:10px; border-radius:5px;'>
-        <p style='font-weight:bold; text-align:center;'>Enter Estimated Costs</p>
-        </div>""",
-        unsafe_allow_html=True
-    )
-    
+with st.sidebar.expander("Upfront Costs", expanded=False):
     stamp_duty = st.number_input("Stamp Duty ($)", value=20000, step=1000, min_value=0)
     conveyancer_fees = st.number_input("Conveyancer Fees ($)", value=2000, step=500, min_value=0)
     inspection_fees = st.number_input("Inspections (Building & Pest) ($)", value=1000, step=500, min_value=0)
+
+    # Total upfront costs
+    upfront_costs = stamp_duty + conveyancer_fees + inspection_fees
+    st.write(f"### Total Upfront Costs: ${upfront_costs}")
+
 
 # Total upfront costs
 upfront_costs = stamp_duty + conveyancer_fees + inspection_fees
