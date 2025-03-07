@@ -92,19 +92,27 @@ investible_assets=assets-property_budget
 st.sidebar.subheader("🏡 Costs of buying property")
 # Sidebar for Property Costs
 
-st.sidebar.markdown("""<div style='border: 2px solid #007BFF; background-color:#007BFF; color:white; padding:10px; border-radius:5px; font-weight:bold; text-align:center;'>Upfront Costs</div>""", unsafe_allow_html=True)
+st.sidebar.markdown(
+    """<div style='border: 2px solid #007BFF; background-color:#007BFF; color:white; padding:10px; border-radius:5px; font-weight:bold; text-align:center;'>Upfront Costs</div>""",
+    unsafe_allow_html=True
+)
 
-
-st.sidebar.write("Enter the estimated cost for each expense:")
-st.sidebar.markdown("""<div style='border: 2px solid #007BFF; padding:20px; border-radius:5px;'>""", unsafe_allow_html=True)
-stamp_duty = st.sidebar.number_input("Stamp Duty ($)", value=20000, step=1000, min_value=0)
-conveyancer_fees = st.sidebar.number_input("Conveyancer Fees ($)", value=2000, step=500, min_value=0)
-inspection_fees = st.sidebar.number_input("Inspections (Building & Pest) ($)", value=1000, step=500, min_value=0)
+# **Using st.sidebar.container() to group elements inside a bordered section**
+with st.sidebar.container():
+    st.markdown(
+        """<div style='border: 2px solid #007BFF; padding:10px; border-radius:5px;'>
+        <p style='font-weight:bold; text-align:center;'>Enter Estimated Costs</p>
+        </div>""",
+        unsafe_allow_html=True
+    )
+    
+    stamp_duty = st.number_input("Stamp Duty ($)", value=20000, step=1000, min_value=0)
+    conveyancer_fees = st.number_input("Conveyancer Fees ($)", value=2000, step=500, min_value=0)
+    inspection_fees = st.number_input("Inspections (Building & Pest) ($)", value=1000, step=500, min_value=0)
 
 # Total upfront costs
 upfront_costs = stamp_duty + conveyancer_fees + inspection_fees
 st.sidebar.write(f"### Total Upfront Costs: ${upfront_costs}")
-st.sidebar.markdown("""</div>""", unsafe_allow_html=True)
 
 st.sidebar.subheader("🏡 Scenario 1: Buy a Property")
 property_price = st.sidebar.number_input("Property Price ($)", value=800000,step = 50000,format="%d")
