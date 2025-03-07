@@ -62,7 +62,7 @@ def property_vs_investment(own_params, rent_params, invest_params, savings_param
         savings_balance = (savings_balance + (monthly_savings * 12)) * (1 + invest_params['return_rate']/100)
         other_exp[i]=own_params['other_expenses']* ((1 + 0.04) ** (i + 1))
         family_inc[i]=own_params['family_income']* ((1 + 0.04) ** (i + 1))
-        invest_cashflow[i] = family_inc[i]-other_exp[i]-rent_income
+        invest_cashflow[i] = family_inc[i]-other_exp[i]-rent_exp
         Tot_Bal=invest_balance+savings_balance
 
     # DataFrames
