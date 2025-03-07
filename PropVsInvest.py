@@ -76,6 +76,7 @@ st.title("🏡 Property vs Investing Analysis 📈")
 st.sidebar.header("📊 Assumptions")
 
 # Inputs
+#--------------------------------------------------------------------------------------------
 st.sidebar.subheader("🏡 Your financial position")
 assets = st.sidebar.number_input("What is your total investable asset base ($)", value=500000, step=10000)
 use_all_assets = st.sidebar.checkbox("Use all assets for property investment")
@@ -87,6 +88,14 @@ else:
 
 investment_return = st.sidebar.number_input("Expected Investment Return (%) on alternative assets", value=7.0, step=0.1)
 investible_assets=assets-property_budget
+#--------------------------------------------------------------------------------------------------------
+st.sidebar.subheader("🏡 Costs of buying property")
+# Sidebar for Property Costs
+st.sidebar.header("Cost of Property")
+st.sidebar.subheader("Upfront Costs")
+st.sidebar.write("- Stamp Duty")
+st.sidebar.write("- Conveyancer Fees")
+st.sidebar.write("- Inspections (Building & Pest)")
 
 st.sidebar.subheader("🏡 Scenario 1: Buy a Property")
 property_price = st.sidebar.number_input("Property Price ($)", value=800000,step = 50000,format="%d")
