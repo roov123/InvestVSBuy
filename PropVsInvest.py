@@ -82,7 +82,7 @@ def property_vs_investment(own_params, rent_params, invest_params, savings_param
         'Year': years_range,
         'Scenario 1:Buy home': own_equity,
         'Scenario 2:Buy property investment': rent_equity,
-        'Scenario 3:Invest': Tot_Bal
+        'Scenario 3:Invest': inv_equity
     })
 
     return df_cashflow, df_equity
