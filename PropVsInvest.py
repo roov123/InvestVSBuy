@@ -101,6 +101,11 @@ stamp_duty = st.sidebar.number_input("Stamp Duty ($)", value=20000, step=1000, m
 conveyancer_fees = st.sidebar.number_input("Conveyancer Fees ($)", value=2000, step=500, min_value=0)
 inspection_fees = st.sidebar.number_input("Inspections (Building & Pest) ($)", value=1000, step=500, min_value=0)
 
+# Total upfront costs
+upfront_costs = stamp_duty + conveyancer_fees + inspection_fees
+st.sidebar.write(f"### Total Upfront Costs: ${upfront_costs}")
+st.sidebar.markdown("""</div>""", unsafe_allow_html=True)
+
 st.sidebar.subheader("🏡 Scenario 1: Buy a Property")
 property_price = st.sidebar.number_input("Property Price ($)", value=800000,step = 50000,format="%d")
 loan_amount = st.sidebar.number_input("Loan Amount ($)", value=600000,step = 50000,format="%d")
