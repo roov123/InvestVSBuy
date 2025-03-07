@@ -78,6 +78,9 @@ st.sidebar.header("📊 Assumptions")
 # Inputs
 #--------------------------------------------------------------------------------------------
 st.sidebar.subheader("🏡 Your financial position")
+family_income= st.sidebar.number_input("What is your monthly family take home income ($)", value=12000, step=200)
+monthly_savings=st.sidebar.number_input("What is your monthly family savings after expenses ($)", value=3000, step=200)
+current_rent=st.sidebar.number_input("What is your current rent ($)", value=4000, step=200)
 assets = st.sidebar.number_input("What is your total investable asset base ($)", value=500000, step=10000)
 use_all_assets = st.sidebar.checkbox("Use all assets for property investment")
 
