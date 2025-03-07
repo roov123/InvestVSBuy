@@ -128,7 +128,7 @@ with st.sidebar.expander("Mortgage costs" , expanded=False):
     #mortgage_payment = st.sidebar.number_input("Monthly Mortgage Payment ($)", value=4000,format="%d")
 
 
- st.sidebar.subheader("🏡 Other assumptions")
+st.sidebar.subheader("🏡 Other assumptions")
 investment_return = st.sidebar.number_input("Expected Investment Return (%) on alternative assets", value=7.0, step=0.1)
 rent_investment_prop=st.sidebar.number_input("Monthly rental income on investment property ($)", value=3000,format="%d")
 rent_growth = st.sidebar.number_input("Annual Rent Growth (%)", value=2.0) / 100
