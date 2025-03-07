@@ -118,6 +118,13 @@ with st.sidebar.expander("Mortgage costs" , expanded=False):
     loan_amount=property_price-deposit
     st.number_input("Deposit:", value=deposit, disabled=True)
     st.number_input("Loan Amount ($):", value=loan_amount, disabled=True)
+    interest_rate = st.sidebar.number_input("Loan Interest Rate (%)", value=5.0) / 100
+    mortgage_payment=calculate_mortgage(loan_amount, interest_rate, 30)
+    st.number_input("Monthly Mortgage ($):", value=mortgage_payment, disabled=True)
+    #mortgage_payment = st.sidebar.number_input("Monthly Mortgage Payment ($)", value=4000,format="%d")
+
+
+    
 
    
 
@@ -128,7 +135,7 @@ st.sidebar.subheader("🏡 Scenario 1: Buy a Property")
 
 loan_amount = st.sidebar.number_input("Loan Amount ($)", value=600000,step = 50000,format="%d")
 interest_rate = st.sidebar.number_input("Loan Interest Rate (%)", value=5.0) / 100
-mortgage_payment = st.sidebar.number_input("Monthly Mortgage Payment ($)", value=4000,format="%d")
+
 expenses = st.sidebar.number_input("Annual Expenses ($)", value=5000,format="%d")
 appreciation_rate = st.sidebar.number_input("Annual Property Appreciation (%)", value=3.0) / 100
 
