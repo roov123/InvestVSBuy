@@ -73,9 +73,21 @@ def property_vs_investment(own_params, rent_params, invest_params, savings_param
 
 # Streamlit UI
 st.title("🏡 Property vs Investing Analysis 📈")
-st.sidebar.header("📊 Property & Investment Assumptions")
+st.sidebar.header("📊 Assumptions")
 
 # Inputs
+st.sidebar.subheader("🏡 Your financial position")
+assets = st.number_input("What is your total investable asset base ($)", value=500000, step=10000)
+use_all_assets = st.checkbox("Use all assets for property investment")
+
+if use_all_assets:
+    property_budget = assets
+else:
+    property_budget = st.number_input("How much are you prepared to invest in property (deposit + upfront costs)?", value=200000, step=10000, min_value=0, max_value=assets)
+
+investment_return = st.number_input("Expected Investment Return (%) on alternative assets", value=7.0, step=0.1)
+investible_assets=assets-property_budget
+
 st.sidebar.subheader("🏡 Scenario 1: Buy a Property")
 property_price = st.sidebar.number_input("Property Price ($)", value=800000,step = 50000,format="%d")
 loan_amount = st.sidebar.number_input("Loan Amount ($)", value=600000,step = 50000,format="%d")
@@ -84,14 +96,7 @@ mortgage_payment = st.sidebar.number_input("Monthly Mortgage Payment ($)", value
 expenses = st.sidebar.number_input("Annual Expenses ($)", value=5000,format="%d")
 appreciation_rate = st.sidebar.number_input("Annual Property Appreciation (%)", value=3.0) / 100
 
-st.header("Mortgage Calculator")
-loan_amount = st.number_input("Loan Amount ($)", value=800000, step=1000)
-interest_rate = st.number_input("Interest Rate (%)", value=6.0, step=0.1)
-loan_term = st.number_input("Loan Term (Years)", value=30, step=1)
 
-if st.button("Calculate Mortgage"):
-    monthly_mortgage = calculate_mortgage(loan_amount, interest_rate, loan_term)
-    st.write(f"### Monthly Mortgage Payment: ${monthly_mortgage}")
 
 
 st.sidebar.subheader("🏢 Scenario 2: Buy an Investment Property")
