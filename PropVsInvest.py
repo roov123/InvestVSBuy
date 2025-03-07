@@ -23,6 +23,7 @@ def property_vs_investment(own_params, rent_params, invest_params, savings_param
     # Owner-Occupied Property
     own_cashflow = np.zeros(years)
     own_equity = np.zeros(years)
+    inv_equity = np.zeros(years)
     loan_balance = own_params['loan_amount']
     other_exp=np.zeros(years)
     family_inc=np.zeros(years)
@@ -64,7 +65,8 @@ def property_vs_investment(own_params, rent_params, invest_params, savings_param
         other_exp[i]=own_params['other_expenses']* ((1 + 0.04) ** (i + 1))
         family_inc[i]=own_params['family_income']* ((1 + 0.04) ** (i + 1))
         invest_cashflow[i] = family_inc[i]-other_exp[i]-rent_exp
-        Tot_Bal=invest_balance+savings_balance
+        inv_equity[i] = invest_balance+savings_balance
+        
 
     # DataFrames
     df_cashflow = pd.DataFrame({
