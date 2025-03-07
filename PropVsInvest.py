@@ -133,8 +133,8 @@ with st.sidebar.expander("Mortgage costs" , expanded=False):
 
 st.sidebar.subheader("🏡 Scenario 1: Buy a Property")
 
-loan_amount = st.sidebar.number_input("Loan Amount ($)", value=600000,step = 50000,format="%d")
-interest_rate = st.sidebar.number_input("Loan Interest Rate (%)", value=5.0) / 100
+#loan_amount = st.sidebar.number_input("Loan Amount ($)", value=600000,step = 50000,format="%d")
+#interest_rate = st.sidebar.number_input("Loan Interest Rate (%)", value=5.0) / 100
 
 expenses = st.sidebar.number_input("Annual Expenses ($)", value=5000,format="%d")
 appreciation_rate = st.sidebar.number_input("Annual Property Appreciation (%)", value=3.0) / 100
