@@ -91,11 +91,12 @@ investible_assets=assets-property_budget
 #--------------------------------------------------------------------------------------------------------
 st.sidebar.subheader("🏡 Costs of buying property")
 # Sidebar for Property Costs
-st.sidebar.header("Cost of Property")
 st.sidebar.subheader("Upfront Costs")
-st.sidebar.write("- Stamp Duty")
-st.sidebar.write("- Conveyancer Fees")
-st.sidebar.write("- Inspections (Building & Pest)")
+st.sidebar.write("Enter the estimated cost for each expense:")
+
+stamp_duty = st.sidebar.number_input("Stamp Duty ($)", value=20000, step=1000, min_value=0)
+conveyancer_fees = st.sidebar.number_input("Conveyancer Fees ($)", value=2000, step=500, min_value=0)
+inspection_fees = st.sidebar.number_input("Inspections (Building & Pest) ($)", value=1000, step=500, min_value=0)
 
 st.sidebar.subheader("🏡 Scenario 1: Buy a Property")
 property_price = st.sidebar.number_input("Property Price ($)", value=800000,step = 50000,format="%d")
