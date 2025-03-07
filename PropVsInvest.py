@@ -8,6 +8,15 @@ st.set_page_config(layout="wide")
 st.info("👈 Use the sidebar to enter your assumptions. Adjust the values to see real-time updates.")
 
 
+def calculate_mortgage(loan_amount, interest_rate, loan_term):
+    monthly_rate = interest_rate / 100 / 12
+    num_payments = loan_term * 12
+    if monthly_rate > 0:
+        mortgage_payment = (loan_amount * monthly_rate) / (1 - (1 + monthly_rate) ** -num_payments)
+    else:
+        mortgage_payment = loan_amount / num_payments
+    return round(mortgage_payment, 2)
+
 def property_vs_investment(own_params, rent_params, invest_params, savings_params, years=20):
     years_range = np.arange(1, years + 1)
 
@@ -74,6 +83,12 @@ interest_rate = st.sidebar.number_input("Loan Interest Rate (%)", value=5.0) / 1
 mortgage_payment = st.sidebar.number_input("Monthly Mortgage Payment ($)", value=4000,format="%d")
 expenses = st.sidebar.number_input("Annual Expenses ($)", value=5000,format="%d")
 appreciation_rate = st.sidebar.number_input("Annual Property Appreciation (%)", value=3.0) / 100
+
+st.header("Mortgage Calculator")
+loan_amount = st.number_input("Loan Amount ($)", value=800000, step=1000)
+interest_rate = st.number_input("Interest Rate (%)", value=6.0, step=0.1)
+loan_term = st.number_input("Loan Term (Years)", value=30, step=1)
+
 
 st.sidebar.subheader("🏢 Scenario 2: Buy an Investment Property")
 rental_income = st.sidebar.number_input("Annual Rental Income ($)", value=30000,format="%d")
