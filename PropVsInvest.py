@@ -96,7 +96,7 @@ st.sidebar.markdown("""<div style='border: 2px solid #007BFF; background-color:#
 
 
 st.sidebar.write("Enter the estimated cost for each expense:")
-st.sidebar.markdown("""<div style='border: 2px solid #007BFF; padding:10px; border-radius:5px;'>""", unsafe_allow_html=True)
+st.sidebar.markdown("""<div style='border: 2px solid #007BFF; padding:20px; border-radius:5px;'>""", unsafe_allow_html=True)
 stamp_duty = st.sidebar.number_input("Stamp Duty ($)", value=20000, step=1000, min_value=0)
 conveyancer_fees = st.sidebar.number_input("Conveyancer Fees ($)", value=2000, step=500, min_value=0)
 inspection_fees = st.sidebar.number_input("Inspections (Building & Pest) ($)", value=1000, step=500, min_value=0)
