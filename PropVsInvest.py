@@ -118,7 +118,7 @@ with st.sidebar.expander("Mortgage costs" , expanded=False):
     loan_amount=property_price-deposit
     st.number_input("Deposit:", value=deposit, disabled=True)
     st.number_input("Loan Amount ($):", value=loan_amount, disabled=True)
-    interest_rate = st.sidebar.number_input("Loan Interest Rate (%)", value=5.0) / 100
+    interest_rate = st.number_input("Loan Interest Rate (%)", value=5.0) / 100
     mortgage_payment=calculate_mortgage(loan_amount, interest_rate, 30)
     st.number_input("Monthly Mortgage ($):", value=mortgage_payment, disabled=True)
     #mortgage_payment = st.sidebar.number_input("Monthly Mortgage Payment ($)", value=4000,format="%d")
