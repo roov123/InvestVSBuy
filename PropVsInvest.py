@@ -24,11 +24,16 @@ def property_vs_investment(own_params, rent_params, invest_params, savings_param
     own_cashflow = np.zeros(years)
     own_equity = np.zeros(years)
     loan_balance = own_params['loan_amount']
+    other_exp=np.zeros(years)
+    family_inc=np.zeros(years)
+    
     for i in range(years):
         interest = loan_balance * own_params['interest_rate']
         principal = own_params['mortgage_payment']*12 - interest
         loan_balance -= principal
-        own_cashflow[i] = -own_params['mortgage_payment'] - own_params['expenses']
+        other_exp[i]=own_params['other_expenses']* ((1 + 0.04) ** (i + 1))
+        family_inc[i]=own_params['family_income']* ((1 + 0.04) ** (i + 1))
+        own_cashflow[i] = family_inc[i]-other_exp[i]-own_params['mortgage_payment'] - own_params['expenses']
         own_equity[i] = own_params['property_price'] * ((1 + own_params['appreciation_rate']) ** (i + 1)) - loan_balance
 
     # Investment Property
@@ -40,8 +45,10 @@ def property_vs_investment(own_params, rent_params, invest_params, savings_param
         interest = loan_balance * rent_params['interest_rate']
         principal = rent_params['mortgage_payment']*12 - interest
         loan_balance -= principal
-        net_cashflow = rent_income - rent_params['expenses'] - rent_params['mortgage_payment']
-        rent_cashflow[i] = net_cashflow
+        other_exp[i]=own_params['other_expenses']* ((1 + 0.04) ** (i + 1))
+        family_inc[i]=own_params['family_income']* ((1 + 0.04) ** (i + 1))
+        rent_cashflow[i] = family_inc[i]-other_exp[i]+rent_income - rent_params['expenses'] - rent_params['mortgage_payment']
+        
         rent_equity[i] = rent_params['property_price'] * ((1 + rent_params['appreciation_rate']) ** (i + 1)) - loan_balance
 
     # Investment Portfolio
@@ -50,15 +57,21 @@ def property_vs_investment(own_params, rent_params, invest_params, savings_param
     savings_balance = 0
     monthly_savings = savings_params['monthly_savings']
     for i in range(years):
+        rent_exp = invest_params['rental_expense'] * (1 + rent_params['rent_growth']) ** i
         invest_balance *= (1 + invest_params['return_rate']/100)
         savings_balance = (savings_balance + (monthly_savings * 12)) * (1 + invest_params['return_rate']/100)
-        invest_cashflow[i] = invest_balance + savings_balance
+        other_exp[i]=own_params['other_expenses']* ((1 + 0.04) ** (i + 1))
+        family_inc[i]=own_params['family_income']* ((1 + 0.04) ** (i + 1))
+        invest_cashflow[i] = family_inc[i]-other_exp[i]-rent_income
+        Tot_Bal=invest_balance+savings_balance
 
     # DataFrames
     df_cashflow = pd.DataFrame({
         'Year': years_range,
-        'Owner-Occupied Cashflow': own_cashflow.cumsum(),
-        'Rental Property Cashflow': rent_cashflow.cumsum(),
+       # 'Owner-Occupied Cashflow': own_cashflow.cumsum(),
+       # 'Rental Property Cashflow': rent_cashflow.cumsum(),
+        'Owner-Occupied Cashflow': own_cashflow,
+        'Rental Property Cashflow': rent_cashflow,
         'Investment Portfolio Value (Incl. Savings)': invest_cashflow
     })
 
@@ -66,7 +79,7 @@ def property_vs_investment(own_params, rent_params, invest_params, savings_param
         'Year': years_range,
         'Scenario 1:Buy home': own_equity,
         'Scenario 2:Buy property investment': rent_equity,
-        'Scenario 3:Invest': invest_cashflow
+        'Scenario 3:Invest': Tot_Bal
     })
 
     return df_cashflow, df_equity
@@ -133,6 +146,7 @@ investment_return = st.sidebar.number_input("Expected Investment Return (%) on a
 rent_investment_prop=st.sidebar.number_input("Monthly rental income on investment property ($)", value=3000,format="%d")
 rent_growth = st.sidebar.number_input("Annual Rent Growth (%)", value=2.0) / 100
 appreciation_rate = st.sidebar.number_input("Annual Property Appreciation (%)", value=3.0) / 100
+other_expenses=family_income-current_rent-monthly_savings
 
  
 
@@ -143,7 +157,9 @@ own_params = {
     'interest_rate': interest_rate,
     'mortgage_payment': mortgage_payment,
     'expenses': ongoing_costs,
-    'appreciation_rate': appreciation_rate
+    'appreciation_rate': appreciation_rate,
+    'other_expenses':other_expenses,
+    'family_income':family_income
 }
 
 rent_params = {
@@ -159,7 +175,8 @@ rent_params = {
 
 invest_params = {
     'initial_investment': assets,
-    'return_rate': investment_return
+    'return_rate': investment_return,
+    'rental_expense':current_rent
 }
 
 savings_params = {
