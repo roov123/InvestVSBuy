@@ -93,7 +93,7 @@ investible_assets=assets-property_budget
 #--------------------------------------------------------------------------------------------------------
 st.sidebar.subheader("🏡 Costs of buying property")
 # Sidebar for Property Costs
-property_price = st.sidebar.number_input("Property Price ($)", value=800000,step = 50000,format="%d")
+
 with st.sidebar.expander("Upfront Costs" , expanded=False):
     stamp_duty = st.number_input("Stamp Duty ($)", value=20000, step=1000, min_value=0)
     conveyancer_fees = st.number_input("Conveyancer Fees ($)", value=2000, step=500, min_value=0)
