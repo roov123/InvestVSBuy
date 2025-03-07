@@ -101,6 +101,15 @@ with st.sidebar.expander("Upfront Costs" , expanded=False):
     upfront_costs = stamp_duty + conveyancer_fees + inspection_fees
     st.write(f"### Total Upfront Costs: ${upfront_costs}")
 
+with st.sidebar.expander("Ongoing monthly costs" , expanded=False):
+    build_insurance = st.number_input("Building insurance ($)", value=200, step=10, min_value=0)
+    strata_fees = st.number_input("Strata Fees ($)", value=200, step=10, min_value=0)
+    council_fees = st.number_input("Council rates ($)", value=50, step=5, min_value=0)
+
+    # Total ongoing monthly osts
+    ongoing_costs = build_insurance + strata_fees + council_fees
+    st.write(f"### Total Upfront Costs: ${ongoing_costs}")
+
 
 
 
