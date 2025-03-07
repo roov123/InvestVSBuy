@@ -102,9 +102,7 @@ with st.sidebar.expander("Upfront Costs", expanded=False):
     st.write(f"### Total Upfront Costs: ${upfront_costs}")
 
 
-# Total upfront costs
-upfront_costs = stamp_duty + conveyancer_fees + inspection_fees
-st.sidebar.write(f"### Total Upfront Costs: ${upfront_costs}")
+
 
 st.sidebar.subheader("🏡 Scenario 1: Buy a Property")
 property_price = st.sidebar.number_input("Property Price ($)", value=800000,step = 50000,format="%d")
