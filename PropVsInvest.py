@@ -91,7 +91,7 @@ investible_assets=assets-property_budget
 #--------------------------------------------------------------------------------------------------------
 st.sidebar.subheader("🏡 Costs of buying property")
 # Sidebar for Property Costs
-st.sidebar.header("Upfront costs")
+
 st.sidebar.markdown("""<div style='border: 2px solid #007BFF; background-color:#007BFF; color:white; padding:10px; border-radius:5px; font-weight:bold; text-align:center;'>Upfront Costs</div>""", unsafe_allow_html=True)
 
 st.sidebar.markdown("""<div style='border: 2px solid #007BFF; padding:10px; border-radius:5px;'>""", unsafe_allow_html=True)
