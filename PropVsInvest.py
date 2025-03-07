@@ -113,11 +113,11 @@ with st.sidebar.expander("Ongoing monthly costs" , expanded=False):
     ongoing_costs = build_insurance + strata_fees + council_fees
     st.write(f"### Total ongoing monthly costs: ${ongoing_costs}")
 
-#with st.sidebar.expander("Mortgage costs" , expanded=False):
-    #property_price= st.number_input("Purchase price ($)", value=800000,step = 50000,format="%d")
-   # loan_amount=property_price-deposit
-   # st.number_input("Deposit:", value=deposit, disabled=True)
-   # st.number_input("Loan Amount ($):", value=loan_amount, disabled=True)
+with st.sidebar.expander("Mortgage costs" , expanded=False):
+    property_price= st.number_input("Purchase price ($)", value=800000,step = 50000,format="%d")
+    loan_amount=property_price-deposit
+    st.number_input("Deposit:", value=deposit, disabled=True)
+    st.number_input("Loan Amount ($):", value=loan_amount, disabled=True)
 
    
 
