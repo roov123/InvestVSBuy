@@ -88,7 +88,7 @@ else:
 
 investment_return = st.sidebar.number_input("Expected Investment Return (%) on alternative assets", value=7.0, step=0.1)
 investible_assets=assets-property_budget
-deposit=property_budget-upfront_costs
+
 
 #--------------------------------------------------------------------------------------------------------
 st.sidebar.subheader("🏡 Costs of buying property")
@@ -101,6 +101,7 @@ with st.sidebar.expander("Upfront Costs" , expanded=False):
 
     # Total upfront costs
     upfront_costs = stamp_duty + conveyancer_fees + inspection_fees
+    deposit=property_budget-upfront_costs
     st.write(f"### Total Upfront Costs: ${upfront_costs}")
 
 with st.sidebar.expander("Ongoing monthly costs" , expanded=False):
