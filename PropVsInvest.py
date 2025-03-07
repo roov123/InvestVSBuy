@@ -88,10 +88,12 @@ else:
 
 investment_return = st.sidebar.number_input("Expected Investment Return (%) on alternative assets", value=7.0, step=0.1)
 investible_assets=assets-property_budget
+deposit=property_budget-upfront_costs
+
 #--------------------------------------------------------------------------------------------------------
 st.sidebar.subheader("🏡 Costs of buying property")
 # Sidebar for Property Costs
-
+property_price = st.sidebar.number_input("Property Price ($)", value=800000,step = 50000,format="%d")
 with st.sidebar.expander("Upfront Costs" , expanded=False):
     stamp_duty = st.number_input("Stamp Duty ($)", value=20000, step=1000, min_value=0)
     conveyancer_fees = st.number_input("Conveyancer Fees ($)", value=2000, step=500, min_value=0)
@@ -106,15 +108,23 @@ with st.sidebar.expander("Ongoing monthly costs" , expanded=False):
     strata_fees = st.number_input("Strata Fees ($)", value=200, step=10, min_value=0)
     council_fees = st.number_input("Council rates ($)", value=50, step=5, min_value=0)
 
-    # Total ongoing monthly osts
+    # Total ongoing monthly costs
     ongoing_costs = build_insurance + strata_fees + council_fees
     st.write(f"### Total ongoing monthly costs: ${ongoing_costs}")
+
+with st.sidebar.expander("Mortgage costs" , expanded=False):
+    property_price= st.number_input("Purchase price ($)", value=800000,step = 50000,format="%d")
+    loan_amount=property_price-deposit
+    st.number_input("Deposit:", value=deposit, disabled=True)
+    st.number_input("Loan Amount ($):", value=loan_amount, disabled=True)
+
+   
 
 
 
 
 st.sidebar.subheader("🏡 Scenario 1: Buy a Property")
-property_price = st.sidebar.number_input("Property Price ($)", value=800000,step = 50000,format="%d")
+
 loan_amount = st.sidebar.number_input("Loan Amount ($)", value=600000,step = 50000,format="%d")
 interest_rate = st.sidebar.number_input("Loan Interest Rate (%)", value=5.0) / 100
 mortgage_payment = st.sidebar.number_input("Monthly Mortgage Payment ($)", value=4000,format="%d")
