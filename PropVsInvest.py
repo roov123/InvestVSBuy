@@ -89,6 +89,10 @@ loan_amount = st.number_input("Loan Amount ($)", value=800000, step=1000)
 interest_rate = st.number_input("Interest Rate (%)", value=6.0, step=0.1)
 loan_term = st.number_input("Loan Term (Years)", value=30, step=1)
 
+if st.button("Calculate Mortgage"):
+    monthly_mortgage = calculate_mortgage(loan_amount, interest_rate, loan_term)
+    st.write(f"### Monthly Mortgage Payment: ${monthly_mortgage}")
+
 
 st.sidebar.subheader("🏢 Scenario 2: Buy an Investment Property")
 rental_income = st.sidebar.number_input("Annual Rental Income ($)", value=30000,format="%d")
