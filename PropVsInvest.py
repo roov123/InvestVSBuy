@@ -41,13 +41,14 @@ def property_vs_investment(own_params, rent_params, invest_params, savings_param
     rent_equity = np.zeros(years)
     loan_balance = rent_params['loan_amount']
     for i in range(years):
+        rent_exp = invest_params['rental_expense'] * (1 + rent_params['rent_growth']) ** i
         rent_income = rent_params['rental_income'] * (1 + rent_params['rent_growth']) ** i
         interest = loan_balance * rent_params['interest_rate']
         principal = rent_params['mortgage_payment']*12 - interest
         loan_balance -= principal
         other_exp[i]=own_params['other_expenses']* ((1 + 0.04) ** (i + 1))
         family_inc[i]=own_params['family_income']* ((1 + 0.04) ** (i + 1))
-        rent_cashflow[i] = family_inc[i]-other_exp[i]+rent_income - rent_params['expenses'] - rent_params['mortgage_payment']
+        rent_cashflow[i] = family_inc[i]-other_exp[i]+rent_income-rent_exp - rent_params['expenses'] - rent_params['mortgage_payment']
         
         rent_equity[i] = rent_params['property_price'] * ((1 + rent_params['appreciation_rate']) ** (i + 1)) - loan_balance
 
