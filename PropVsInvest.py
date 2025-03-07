@@ -50,8 +50,8 @@ def property_vs_investment(own_params, rent_params, invest_params, savings_param
     savings_balance = 0
     monthly_savings = savings_params['monthly_savings']
     for i in range(years):
-        invest_balance *= (1 + invest_params['return_rate'])
-        savings_balance = (savings_balance + (monthly_savings * 12)) * (1 + invest_params['return_rate'])
+        invest_balance *= (1 + invest_params['return_rate']/100)
+        savings_balance = (savings_balance + (monthly_savings * 12)) * (1 + invest_params['return_rate']/100)
         invest_cashflow[i] = invest_balance + savings_balance
 
     # DataFrames
