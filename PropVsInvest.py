@@ -91,7 +91,7 @@ investible_assets=assets-property_budget
 #--------------------------------------------------------------------------------------------------------
 st.sidebar.subheader("🏡 Costs of buying property")
 # Sidebar for Property Costs
-st.sidebar.markdown("""<div style='background-color:#f0f0f0; padding:10px; border-radius:5px; font-weight:bold;'>Upfront Costs</div>""", unsafe_allow_html=True)
+st.sidebar.markdown("""<div style='background-color:#007BFF; color:white; padding:10px; border-radius:5px; font-weight:bold; text-align:center;'>Upfront Costs</div>""", unsafe_allow_html=True)
 st.sidebar.write("Enter the estimated cost for each expense:")
 
 stamp_duty = st.sidebar.number_input("Stamp Duty ($)", value=20000, step=1000, min_value=0)
